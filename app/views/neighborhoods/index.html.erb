@@ -1,5 +1,14 @@
-<% @neighborhoods.each do |n| %>
-<p>
-  <%= n.name %>
-</p>
+<h1>LA Neighborhoods</h1>
+
+<% @neighborhoods.each do |neighborhood| %>
+
+<h2><a href='<%= neighborhood.url %>'><%= neighborhood.name %></a></h3>
+
+  <% if neighborhood.profiles.any? %>
+    <% neighborhood.profiles.each do |profile| %>
+      <h5><%= profile.heading %></h5>
+      <%= profile.raw_xml.html_safe %>
+    <% end %>
+
+  <% end %>
 <% end %>

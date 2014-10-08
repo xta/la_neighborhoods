@@ -13,6 +13,10 @@
     # load Neighborhood
     rake neighborhoods:create
 
+    # load Profile
+    rake profiles:create
+    rake profiles:name_heading
+
 ### Usage
 
     # start server
