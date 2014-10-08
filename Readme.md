@@ -17,6 +17,9 @@
     rake profiles:create
     rake profiles:name_heading
 
+    # load Crime
+    rake crimes:create
+
 ### Usage
 
     # start server

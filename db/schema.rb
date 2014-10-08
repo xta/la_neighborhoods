@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008044613) do
+ActiveRecord::Schema.define(version: 20141008060648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "crimes", force: true do |t|
+    t.integer  "neighborhood_id"
+    t.integer  "rank"
+    t.float    "per_capita"
+    t.integer  "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "crimes", ["neighborhood_id"], name: "index_crimes_on_neighborhood_id", using: :btree
 
   create_table "neighborhoods", force: true do |t|
     t.string   "name"
