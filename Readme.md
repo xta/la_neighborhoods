@@ -1,10 +1,23 @@
 # LA Neighborhoods
 
-### Development
+### Setup
+    # setup dependencies
     bundle
 
     # generate data/neighborhoods.txt url list
     ruby lib/build_neighborhoods.rb
+
+    # setup db
+    rake db:create db:schema:load
+
+    # load Neighborhood
+    rake neighborhoods:create
+
+### Usage
+
+    # start server
+    rails s
+    open http://localhost:3000/
 
 ### Attribution
 
