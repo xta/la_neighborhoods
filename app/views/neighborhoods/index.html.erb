@@ -1,25 +1,7 @@
-<h1>LA Neighborhoods</h1>
+<h1>All Neighborhoods</h1>
 
-<% @neighborhoods.each do |neighborhood| %>
-
-<h3>
-  <%= link_to neighborhood.name, neighborhood_path(neighborhood.id) %>
-  <%= link_to "(LAT)", neighborhood.url %>
-</h3>
-
-  <% if neighborhood.profiles.any? %>
-    <% neighborhood.profiles.each do |profile| %>
-      <h5><%= profile.heading %></h5>
-      <%= profile.raw_xml.html_safe %>
-    <% end %>
+<ol>
+  <% @neighborhoods.each do |neighborhood| %>
+    <li><%= link_to neighborhood.name, neighborhood_path(neighborhood.id) %></li>
   <% end %>
-
-  <% if neighborhood.crime %>
-    <h5>Crime rate</h5>
-    <ul>
-    <li><%= neighborhood.crime.rank %> (Higher is worse, lower is better.)</li>
-    <li><%= neighborhood.crime.per_capita %> per capita</li>
-    </ul>
-  <% end %>
-
-<% end %>
+</ol>

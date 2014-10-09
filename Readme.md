@@ -20,6 +20,9 @@
     # load Crime
     rake crimes:create
 
+    # load 
+    rake polygons:create
+
 ### Usage
 
     # start server

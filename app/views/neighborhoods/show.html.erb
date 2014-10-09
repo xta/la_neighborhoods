@@ -1,4 +1,26 @@
-<h1>Neighborhood - <%= @neighborhood.name %></h1>
+<h2><%= @neighborhood.name %></h2>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<div id="map-canvas"></div>
+
+<script>
+  var geojson = <%= @neighborhood.polygon.to_json.html_safe %>;
+
+  var map;
+  function initialize() {
+    // Create a simple map.
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      zoom: 12,
+      center: {lat: <%= @neighborhood.center_lat %>, lng: <%= @neighborhood.center_lng %>}
+    });
+
+    // Load a GeoJSON from the same server as our demo.
+    map.data.addGeoJson(geojson);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
 <% if @neighborhood.profiles.any? %>
   <% @neighborhood.profiles.each do |profile| %>
@@ -14,3 +36,5 @@
   <li><%= @neighborhood.crime.per_capita %> per capita</li>
   </ul>
 <% end %>
+
+<%= link_to "(LAT)", @neighborhood.url %>
