@@ -1,7 +1,49 @@
 <h1>All Neighborhoods</h1>
 
-<ol>
-  <% @neighborhoods.each do |neighborhood| %>
-    <li><%= link_to neighborhood.name, neighborhood_path(neighborhood.id) %></li>
-  <% end %>
-</ol>
+<div id="map-canvas" class='index'></div>
+
+<h2 id="current"></h2>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+  var geojson = <%= @geojson.html_safe %>;
+
+  var map;
+  function initialize() {
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      zoom: 10,
+      center: {lat: 34.1, lng: -118.3}
+    });
+
+    map.data.addGeoJson(geojson);
+
+    // set styling
+    var featureStyle = {
+      fillColor: '#aaa',
+      strokeWeight: 0.5
+    }
+    map.data.setStyle(featureStyle);
+
+    // add hover enter/exit events
+    map.data.addListener('mouseover', function(event) {
+      map.data.revertStyle();
+      map.data.overrideStyle(event.feature, {strokeWeight: 3});
+
+      var name = event.feature.getProperty('name');
+      $('#current').text(name);
+    });
+
+    map.data.addListener('mouseout', function(event) {
+      map.data.revertStyle();
+      $('#current').text("");
+    });
+
+    // on click event
+    map.data.addListener('click', function(event) {
+      var slug = event.feature.getProperty('slug');
+      location.replace("/neighborhoods/" + slug);
+    });
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

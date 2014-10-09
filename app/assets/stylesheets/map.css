@@ -4,3 +4,10 @@
   margin: 0px;
   padding: 0px
 }
+
+#map-canvas.index {
+  height: 400px;
+  width: 700px;
+  margin: 0px;
+  padding: 0px
+}
