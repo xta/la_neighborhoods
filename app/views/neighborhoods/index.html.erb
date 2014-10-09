@@ -2,7 +2,10 @@
 
 <% @neighborhoods.each do |neighborhood| %>
 
-<h2><a href='<%= neighborhood.url %>'><%= neighborhood.name %></a></h3>
+<h3>
+  <%= link_to neighborhood.name, neighborhood_path(neighborhood.id) %>
+  <%= link_to "(LAT)", neighborhood.url %>
+</h3>
 
   <% if neighborhood.profiles.any? %>
     <% neighborhood.profiles.each do |profile| %>

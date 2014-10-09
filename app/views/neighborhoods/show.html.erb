@@ -1,0 +1,16 @@
+<h1>Neighborhood - <%= @neighborhood.name %></h1>
+
+<% if @neighborhood.profiles.any? %>
+  <% @neighborhood.profiles.each do |profile| %>
+    <h5><%= profile.heading %></h5>
+    <%= profile.raw_xml.html_safe %>
+  <% end %>
+<% end %>
+
+<% if @neighborhood.crime %>
+  <h5>Crime rate</h5>
+  <ul>
+  <li><%= @neighborhood.crime.rank %> (Higher is worse, lower is better.)</li>
+  <li><%= @neighborhood.crime.per_capita %> per capita</li>
+  </ul>
+<% end %>
