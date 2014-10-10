@@ -1,0 +1,15 @@
+.neighborhood-data {
+  position: absolute;
+  width: 30%;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+}
+
+.neighborhood {
+  display: none;
+}
+
+.current.neighborhood {
+  display: inline;
+}

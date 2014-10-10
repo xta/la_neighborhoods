@@ -22,6 +22,8 @@
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
+<div class='neighborhood-data'>
+
 <% if @neighborhood.profiles.any? %>
   <% @neighborhood.profiles.each do |profile| %>
     <h5><%= profile.heading %></h5>
@@ -38,3 +40,5 @@
 <% end %>
 
 <%= link_to "(LAT)", @neighborhood.url %>
+
+</div>
